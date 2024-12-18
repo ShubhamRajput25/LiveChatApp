@@ -9,7 +9,8 @@ const loginController = expressAsyncHandler(async (req, res) => {
   const user = await UserModel.findOne({ name });
 
   console.log("fetched user Data", user);
-  console.log(await user.matchPassword(password));
+  console.log(await user.matchPassword(password)); 
+
   if (user && (await user.matchPassword(password))) {
     const response = {
       _id: user._id,
@@ -52,6 +53,7 @@ const registerController = expressAsyncHandler(async (req, res) => {
 
   // create an entry in the db
   const user = await UserModel.create({ name, email, password });
+  
   if (user) {
     res.status(201).json({
       _id: user._id,

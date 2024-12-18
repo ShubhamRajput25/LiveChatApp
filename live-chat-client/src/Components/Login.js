@@ -40,17 +40,21 @@ function Login() {
       localStorage.setItem("userData", JSON.stringify(response));
       navigate("/app/welcome");
     } catch (error) {
+
       setLogInStatus({
         msg: "Invalid User name or Password",
         key: Math.random(),
       });
     }
     setLoading(false);
+    
   };
 
   const signUpHandler = async () => {
     setLoading(true);
+
     try {
+
       const config = {
         headers: {
           "Content-type": "application/json",
@@ -62,12 +66,15 @@ function Login() {
         data,
         config
       );
+
       console.log(response);
       setSignInStatus({ msg: "Success", key: Math.random() });
       navigate("/app/welcome");
       localStorage.setItem("userData", JSON.stringify(response));
       setLoading(false);
+
     } catch (error) {
+
       console.log(error);
       if (error.response.status === 405) {
         setLogInStatus({
@@ -75,13 +82,16 @@ function Login() {
           key: Math.random(),
         });
       }
+
       if (error.response.status === 406) {
         setLogInStatus({
           msg: "User Name already Taken, Please take another one",
           key: Math.random(),
         });
       }
+
       setLoading(false);
+
     }
   };
 

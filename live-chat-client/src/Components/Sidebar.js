@@ -33,6 +33,7 @@ function Sidebar() {
   }
 
   const user = userData.data;
+  
   useEffect(() => {
     // console.log("Sidebar : ", user.token);
     const config = {
@@ -118,8 +119,9 @@ function Sidebar() {
         />
       </div>
       <div className={"sb-conversations" + (lightTheme ? "" : " dark")}>
+        {console.log("xxxxxxxxxxxxxxxxxxxxxxxx",conversations)}
         {conversations.map((conversation, index) => {
-          // console.log("current convo : ", conversation);
+          console.log("current convo : ", conversation);
           if (conversation.users.length === 1) {
             return <div key={index}></div>;
           }
@@ -147,11 +149,14 @@ function Sidebar() {
                   }}
                   // dispatch change to refresh so as to update chatArea
                 >
+                  {/* {console.log("userData?._id , conversation?.users[0]?._id : ",userData?.data?._id , conversation?.users[0]?._id)}
+                  {console.log("conversation?.users[0]?.name : ",conversation?.users)} */}
                   <p className={"con-icon" + (lightTheme ? "" : " dark")}>
-                    {conversation.users[1].name[0]}
+                    { userData?.data?._id === conversation?.users[0]?._id ? conversation?.users[1]?.name[0] : conversation?.users[0]?.name[0]}
                   </p>
                   <p className={"con-title" + (lightTheme ? "" : " dark")}>
-                    {conversation.users[1].name}
+                    {/* {conversation.users[1].name} */}
+                    { userData?.data?._id === conversation?.users[0]?._id ? conversation?.users[1]?.name : conversation?.users[0]?.name}
                   </p>
 
                   <p className="con-lastMessage">
@@ -178,10 +183,12 @@ function Sidebar() {
                 }}
               >
                 <p className={"con-icon" + (lightTheme ? "" : " dark")}>
-                  {conversation.users[1].name[0]}
+                { userData?.data?._id === conversation?.users[0]?._id ? conversation?.users[1]?.name[0] : conversation?.users[0]?.name[0]}
+                  {/* {conversation.users[1].name[0]} */}
                 </p>
                 <p className={"con-title" + (lightTheme ? "" : " dark")}>
-                  {conversation.users[1].name}
+                { userData?.data?._id === conversation?.users[0]?._id ? conversation?.users[1]?.name : conversation?.users[0]?.name}
+                  {/* {conversation.users[1].name} */}
                 </p>
 
                 <p className="con-lastMessage">

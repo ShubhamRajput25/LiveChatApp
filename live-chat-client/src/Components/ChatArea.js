@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import MessageSelf from "./MessageSelf";
-import MessageOthers from "./MessageOthers";
+import MessageOthers from "./MessageOthers"; 
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
@@ -23,6 +23,8 @@ function ChatArea() {
   // const refresh = useSelector((state) => state.refreshKey);
   const { refresh, setRefresh } = useContext(myContext);
   const [loaded, setloaded] = useState(false);
+
+  
   const sendMessage = () => {
     // console.log("SendMessage Fired to", chat_id._id);
     const config = {

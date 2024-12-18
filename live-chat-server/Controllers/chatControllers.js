@@ -4,7 +4,7 @@ const User = require("../modals/userModel");
 
 const accessChat = asyncHandler(async (req, res) => {
   const { userId } = req.body;
-
+ 
   if (!userId) {
     console.log("UserId param not sent with request");
     return res.sendStatus(400);
@@ -13,7 +13,7 @@ const accessChat = asyncHandler(async (req, res) => {
   var isChat = await Chat.find({
     isGroupChat: false,
     $and: [
-      { users: { $elemMatch: { $eq: req.user._id } } },
+      { users: { $elemMatch: { $eq: req.user._id } } }, 
       { users: { $elemMatch: { $eq: userId } } },
     ],
   })
@@ -28,6 +28,7 @@ const accessChat = asyncHandler(async (req, res) => {
   if (isChat.length > 0) {
     res.send(isChat[0]);
   } else {
+    
     var chatData = {
       chatName: "sender",
       isGroupChat: false,
